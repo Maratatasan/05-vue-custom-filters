@@ -9,13 +9,12 @@ export default {
     function updateFilter() {
       params.filterChangedCallback();
     }
-    function doesFilterPass() {
-      return false;
-    }
     function isFilterActive() {
       return false;
     }
-
+    function doesFilterPass() {
+      return false;
+    }
     function getModel() {
       return undefined;
     }
