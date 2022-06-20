@@ -13,13 +13,13 @@
 import { AgGridVue } from "ag-grid-vue3";
 
 import { reactive, h, onMounted } from "vue";
-import YearFilterVue from './YearFilter.vue';
+import YearFilterVue from "./YearFilter.vue";
 
 export default {
   name: "App",
   components: {
     AgGridVue,
-    YearFilterVue
+    YearFilterVue,
   },
   setup(props) {
     const rowData = reactive({
