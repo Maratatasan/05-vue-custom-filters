@@ -2,7 +2,7 @@
   <div>
     <div class="filter-title">Year Filter</div>
     <label
-      v-for="(value, index) in ['Filter off', 'Filter on']"
+      v-for="(value, index) in filterOptions"
       :key="index"
     >
       <input
@@ -22,17 +22,18 @@ import { ref } from "@vue/reactivity";
 const { params } = defineProps();
 
 const filterState = ref("Filter off");
+const filterOptions = ["Filter off", "2004", "2008"];
 
 function updateFilter() {
   params.filterChangedCallback();
 }
 
 function isFilterActive() {
-  return false;
+  return filterState.value != "Filter off";
 }
 
 function doesFilterPass(params) {
-  return false;
+  return params.data.year == filterState.value;
 }
 
 function getModel() {
