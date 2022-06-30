@@ -19,7 +19,7 @@ export default {
   name: "App",
   components: {
     AgGridVue,
-    YearFilterVue
+    YearFilterVue,
   },
   setup(props) {
     const rowData = reactive({
@@ -28,7 +28,11 @@ export default {
     const columnDefs = reactive({
       columns: [
         { field: "athlete" },
-        { field: "year", filter: YearFilterVue },
+        {
+          field: "year",
+          filter: YearFilterVue,
+          filterParams: { title: "My custom filter" },
+        },
         { field: "age" },
         { field: "country" },
       ],

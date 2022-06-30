@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="filter-title">Year Filter</div>
+    <div class="filter-title">{{ params.title }}</div>
     <label
       v-for="(value, index) in filterOptions"
       :key="index"
@@ -20,6 +20,8 @@
 import { ref } from "@vue/reactivity";
 
 const { params } = defineProps();
+
+console.log(params);
 
 const filterState = ref("Filter off");
 const filterOptions = ["Filter off", "2004", "2008"];
