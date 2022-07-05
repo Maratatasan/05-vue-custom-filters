@@ -13,13 +13,13 @@
 import { AgGridVue } from "ag-grid-vue3";
 
 import { reactive, h, onMounted } from "vue";
-import YearFilterVue from "./YearFilter.vue";
+import MyFilter from "./YearFilter.vue";
 
 export default {
   name: "App",
   components: {
     AgGridVue,
-    YearFilterVue,
+    YearFilterVue: MyFilter,
   },
   setup(props) {
     const rowData = reactive({
@@ -30,10 +30,20 @@ export default {
         { field: "athlete" },
         {
           field: "year",
-          filter: YearFilterVue,
-          filterParams: { title: "My custom filter" },
+          filter: MyFilter,
+          filterParams: {
+            title: "Year Filter",
+            values: [2000, 2006, 2008],
+          },
         },
-        { field: "age" },
+        {
+          field: "age",
+          filter: MyFilter,
+          filterParams: {
+            title: "Age Filter",
+            values: [18, 19, 20, 21],
+          },
+        },
         { field: "country" },
       ],
     });

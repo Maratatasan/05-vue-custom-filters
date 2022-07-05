@@ -1,18 +1,17 @@
 <template>
-  <div>
+  <div style="display: flex; flex-direction: column;">
     <div class="filter-title">{{ params.title }}</div>
-    <label
-      v-for="(value, index) in filterOptions"
+    <div>Filter State = {{filterState}}</div>
+    <button @click="updateFilter('Filter off')">
+      Filter off
+    </button>
+    <button
+      v-for="(value, index) in params.values"
       :key="index"
+      @click="updateFilter(value)"
     >
-      <input
-        type="radio"
-        :value="value"
-        v-model="filterState"
-        @change="updateFilter()"
-      />
       {{ value }}
-    </label>
+    </button>
   </div>
 </template>
 
@@ -21,12 +20,12 @@ import { ref } from "@vue/reactivity";
 
 const { params } = defineProps();
 
-const {field} = params.colDef
+const { field } = params.colDef;
 
 const filterState = ref("Filter off");
-const filterOptions = ["Filter off", "2004", "2008"];
 
-function updateFilter() {
+function updateFilter(value) {
+  filterState.value = value
   params.filterChangedCallback();
 }
 
@@ -35,7 +34,6 @@ function isFilterActive() {
 }
 
 function doesFilterPass(params) {
- 
   return params.data[field] == filterState.value;
 }
 
