@@ -21,7 +21,7 @@ import { ref } from "@vue/reactivity";
 
 const { params } = defineProps();
 
-console.log(params);
+const {field} = params.colDef
 
 const filterState = ref("Filter off");
 const filterOptions = ["Filter off", "2004", "2008"];
@@ -35,7 +35,8 @@ function isFilterActive() {
 }
 
 function doesFilterPass(params) {
-  return params.data.year == filterState.value;
+ 
+  return params.data[field] == filterState.value;
 }
 
 function getModel() {
