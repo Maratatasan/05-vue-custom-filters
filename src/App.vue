@@ -1,10 +1,13 @@
 <template>
+  <button @click="onBtnSave()">Save</button>
+  <button @click="onBtnRestore()">Restore</button>
   <ag-grid-vue
     style="width: 100%; height: 95vh"
     class="ag-theme-alpine"
     :rowData="rowData.rows"
     :columnDefs="columnDefs.columns"
     :defaultColDef="defaultColDef.def"
+    @grid-ready="onGridReady"
   >
   </ag-grid-vue>
 </template>
@@ -12,7 +15,7 @@
 <script>
 import { AgGridVue } from "ag-grid-vue3";
 
-import { reactive, h, onMounted } from "vue";
+import { reactive, h, onMounted, ref } from "vue";
 import MyFilter from "./YearFilter.vue";
 
 export default {
@@ -22,6 +25,20 @@ export default {
     YearFilterVue: MyFilter,
   },
   setup(props) {
+    const gridApi = ref(null);
+    let savedFilterState;
+
+    function onGridReady(params) {
+      gridApi.value = params.api;
+    }
+    function onBtnSave() {
+      const model = gridApi.value.getFilterModel();
+      console.log(model);
+      savedFilterState = model;
+    }
+    function onBtnRestore() {
+      gridApi.value.setFilterModel(savedFilterState);
+    }
     const rowData = reactive({
       rows: [],
     });
@@ -59,7 +76,14 @@ export default {
         .then((data) => (rowData.rows = data));
     });
 
-    return { columnDefs, rowData, defaultColDef };
+    return {
+      columnDefs,
+      rowData,
+      defaultColDef,
+      onGridReady,
+      onBtnSave,
+      onBtnRestore,
+    };
   },
 };
 </script>
