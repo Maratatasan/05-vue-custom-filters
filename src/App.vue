@@ -33,7 +33,7 @@ export default {
     }
     function onBtnSave() {
       const model = gridApi.value.getFilterModel();
-      console.log(model);
+      console.log("saving", model);
       savedFilterState = model;
     }
     function onBtnRestore() {
