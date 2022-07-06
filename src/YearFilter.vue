@@ -56,8 +56,12 @@ function getModelAsString() {
     ? ""
     : filterState.value;
 }
-function onNewRowsLoaded() {}
-function onAnyFilterChanged() {}
+function onNewRowsLoaded() {
+  console.log('new rows were loaded')
+}
+function onAnyFilterChanged() {
+  console.log('another filter was changed')
+}
 function destroy(params) {}
 </script>
 
