@@ -48,6 +48,7 @@ export default {
         {
           field: "year",
           filter: MyFilter,
+          floatingFilter: true,
           filterParams: {
             title: "Year Filter",
             values: [2000, 2006, 2008],
@@ -56,6 +57,7 @@ export default {
         {
           field: "age",
           filter: MyFilter,
+          floatingFilter: true,
           filterParams: {
             title: "Age Filter",
             values: [18, 19, 20, 21],

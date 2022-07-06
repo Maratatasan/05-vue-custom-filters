@@ -51,6 +51,14 @@ function setModel(model) {
     updateFilter(model.state);
   }
 }
+function getModelAsString() {
+  return filterState.value == "Filter off"
+    ? ""
+    : filterState.value;
+}
+function onNewRowsLoaded() {}
+function onAnyFilterChanged() {}
+function destroy(params) {}
 </script>
 
 <style lang="scss" scoped></style>
