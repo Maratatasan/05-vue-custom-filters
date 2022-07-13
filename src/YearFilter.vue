@@ -51,18 +51,29 @@ function setModel(model) {
     updateFilter(model.state);
   }
 }
+
 function getModelAsString() {
   return filterState.value == "Filter off"
     ? ""
     : filterState.value;
 }
 function onNewRowsLoaded() {
-  console.log('new rows were loaded')
+  console.log("new rows were loaded");
 }
 function onAnyFilterChanged() {
-  console.log('another filter was changed')
+  console.log("another filter was changed");
 }
-function destroy(params) {}
+console.log(params.title + " was created");
+function destroy() {
+  console.log(params.title + " was destroyed");
+}
+function afterGuiAttached() {
+  console.log('focus something???')
+}
+
+function myCustomFilterMethod(){
+  console.log('do something with my ' + params.title)
+}
 </script>
 
 <style lang="scss" scoped></style>

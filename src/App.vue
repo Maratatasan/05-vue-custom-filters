@@ -1,6 +1,7 @@
 <template>
   <button @click="onBtnSave()">Save</button>
   <button @click="onBtnRestore()">Restore</button>
+  <button @click="onBtnCustomApi()">Custom Api</button>
   <ag-grid-vue
     style="width: 100%; height: 95vh"
     class="ag-theme-alpine"
@@ -28,6 +29,12 @@ export default {
     const gridApi = ref(null);
     let savedFilterState;
 
+function onBtnCustomApi(){
+  gridApi.value.getFilterInstance('year', instance =>{
+    instance.myCustomFilterMethod()
+  })
+}
+
     function onGridReady(params) {
       gridApi.value = params.api;
     }
@@ -44,7 +51,7 @@ export default {
     });
     const columnDefs = reactive({
       columns: [
-        { field: "athlete" },
+        { field: "athlete", filter: true },
         {
           field: "year",
           filter: MyFilter,
@@ -85,6 +92,7 @@ export default {
       onGridReady,
       onBtnSave,
       onBtnRestore,
+      onBtnCustomApi
     };
   },
 };
